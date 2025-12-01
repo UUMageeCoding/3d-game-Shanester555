@@ -32,6 +32,14 @@ public class SC_FPSController : MonoBehaviour
 
     void Update()
     {
+        if (canMove)
+        {
+            Movement();
+        }
+    }
+
+    void Movement()
+    {
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -60,7 +68,10 @@ public class SC_FPSController : MonoBehaviour
         }
 
         // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
+        if (canMove)
+        {
+            characterController.Move(moveDirection * Time.deltaTime);
+        }
 
         // Player and Camera rotation
         if (canMove)
